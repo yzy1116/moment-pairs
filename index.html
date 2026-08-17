@@ -269,9 +269,12 @@ function positionSuccess(){
   b.style.height=((1085-935)/SRC_H*r.h)+'px';
 }
 window.addEventListener('resize',()=>{positionHomeButton();positionProgress();positionSuccess();});
-document.getElementById('homeImg').addEventListener('load',()=>{positionHomeButton();});
-document.getElementById('loadingImg').addEventListener('load',()=>{buildProgress();positionProgress();});
-document.getElementById('successImg').addEventListener('load',()=>{positionSuccess();});
+const homeImg=document.getElementById('homeImg');
+if(homeImg.naturalWidth>0){positionHomeButton();}else{homeImg.addEventListener('load',()=>{positionHomeButton();});}
+const loadingImg=document.getElementById('loadingImg');
+if(loadingImg.naturalWidth>0){buildProgress();positionProgress();}else{loadingImg.addEventListener('load',()=>{buildProgress();positionProgress();});}
+const successImg=document.getElementById('successImg');
+if(successImg.naturalWidth>0){positionSuccess();}else{successImg.addEventListener('load',()=>{positionSuccess();});}
 
 /* ============ 数据 ============ */
 const TOTAL=12;
